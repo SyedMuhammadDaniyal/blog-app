@@ -1,0 +1,45 @@
+{% extends "mainapp/base.html" %}
+
+{% block title %}
+My Blogs
+{% endblock %}
+
+{% block body %}
+<br>
+<br>
+
+<h2 style="text-align: center;">My Blogs</h2>
+<br>
+
+<br>
+<div style="width: 100%;display: flex;flex-wrap: wrap;justify-content: space-around;">
+
+
+
+    {% for i in blogs %}
+    <div class="card mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="/media/{{i.image}}" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">{{i.title}}</h5>
+              <p class="card-text">{{i.content|slice:":100"}} <a href="/mainapp/read-blog/?uuid={{i.uuid}}">See More</a></p>
+              <p class="card-text"><small class="text-muted">{{i.publish_date}}</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+{% endfor %}
+
+
+
+
+
+
+
+
+</div>
+{% endblock %}

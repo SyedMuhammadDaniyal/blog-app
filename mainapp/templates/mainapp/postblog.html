@@ -1,0 +1,35 @@
+{% extends "mainapp/base.html" %}
+
+{% block title %}
+Post Blog
+{% endblock %}
+
+{% block body %}
+<br>
+    <br>
+    <br>
+<div style="width: 100%;display: flex;flex-wrap: wrap;justify-content: center;">
+    
+    <div>
+    <form action="" style="width: 500px;" enctype="multipart/form-data" method="post" action="/mainapp/post-blog">
+        {% csrf_token %}
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Title</label>
+        <input type="text" class="form-control" name="title" id="exampleFormControlInput1">
+      </div>
+
+      <div class="mb-3">
+        <label for="formFile" class="form-label">Select image here</label>
+        <input class="form-control" type="file" name="image" id="formFile">
+      </div>
+
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Content</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" name="content" rows="3"></textarea>
+      </div>
+
+      <button class="btn btn-dark" type="submit">Post</button>
+    </form>
+</div>
+</div>
+{% endblock %}

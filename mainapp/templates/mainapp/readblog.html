@@ -1,0 +1,78 @@
+{% extends "mainapp/base.html" %}
+
+{% block title %}
+Read Blog
+{% endblock %}
+
+{% block body %}
+<br>
+<br>
+<div style="width: 100%;display: flex;flex-wrap: wrap;justify-content: center;">
+    <div style="width: 70%;border-radius: 5px;">
+        
+        <img src="/media/{{ blog.image }}" width="100%" height="350px" style="border-radius: 5px;border: 2px solid grey;" alt="">
+        <br>
+        <br>
+        <br>
+        <h1>{{ blog.title }}</h1>
+        <br>
+        <span >{{ blog.content }}</span>
+        <br>
+        <!-- Button trigger modal -->
+        
+          <!-- <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+          Edit</button>
+          <a href="/mainapp/delete-blog?uuid={{ blog.uuid }}"><button class="btn btn-dark">Delete</button></a>
+         -->
+         <br>
+         <h4>Author: {{ blog.user.username }}</h4>
+         <a href="/mainapp/like?uuid={{ blog.uuid }}">Like </a>{{ likes }}
+         <a >Comments</a>{{ commentlen }}
+
+         <br>
+         <form action="/mainapp/comment" method="get">
+            <input type="text" name="comment" placeholder="Write comment here">
+            <input type="text" hidden name="uuid" value="{{blog.uuid}}">
+            <button class="btn btn-dark">Submit</button>
+         </form>
+         {% for i in comments %}
+         <p><span>{{i.user.username}}: </span>{{i.comment}}</p>
+         {% endfor %}
+    </div>
+</div>
+
+
+
+
+<!-- Modal -->
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+   
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Edit Blog</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+       
+        <div class="modal-body">
+          <form action="/mainapp/update-blog?uuid={{ blog.uuid }}" method="POST"> {% csrf_token %}
+            <h6>Title</h6>
+          <input type="text" name="title" value="{{ blog.title }}">
+          <h6>Content</h6>
+          <textarea name="" id="" cols="30" rows="10" name="content">"{{ blog.content }}"</textarea>
+        </div>
+        
+    
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" type="submit">Update</button>
+        </div>
+      </form>
+      </div>
+    </div>
+
+  </div>
+
+{% endblock %}

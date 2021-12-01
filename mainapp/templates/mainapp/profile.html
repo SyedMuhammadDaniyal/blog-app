@@ -1,0 +1,15 @@
+{% extends "mainapp/base.html" %}
+
+{% block title %}
+Profile
+{% endblock %}
+
+{% block body %}
+<br>
+<h4>Username: {{ user.username }}</h4>
+<h4>Email: {{ user.email }}</h4>
+<h4>Followers</h4>
+{% for i in followers %}
+<p>{{ i }}</p>
+{% endfor %}
+{% endblock %}
